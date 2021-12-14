@@ -27,6 +27,21 @@ The [API][api_link] is compatible with the CPython version [microbmp][microbmp_l
   [api_link]: https://microbmp.readthedocs.io/en/latest/?badge=latest
   [microbmp_link]: https://github.com/jacklinquan/microbmp
 
+## Where this module can be useful
+This module can be useful in many scenarios, not limited to the list below:
+
+- To show BMP images on the screen.
+    It supports 1/2/4/8/24-bit colour depth and RLE compression(4-bit and 8-bit).
+    If the number of colours used in an image is small, it can be much compact.
+- To print the screen.
+    A screen or any `framebuf.FrameBuffer` object can be saved as a BMP image.
+- Save camera or IR thermal camera images.
+    For projects involve MLX90640 or AMG88xx, the IR images can be saved.
+- Generate dynamic BMP images for web servers.
+    This module also can write BMP images to BytesIO.
+    So it does NOT have to save the images in the file system.
+    A combination of web server and IR camera can show IR image dynamically in the browser.
+
 ## Installation
 ``` Python
 >>> import upip
