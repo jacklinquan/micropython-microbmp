@@ -38,7 +38,7 @@ This module can be useful in many scenarios, not limited to the list below:
 - To print the screen.
     A screen or any `framebuf.FrameBuffer` object can be saved as a BMP image.
 - To save camera or IR thermal camera images.
-    For projects involve MLX90640 or AMG88xx, the IR images can be saved.
+    For projects that involve MLX90640 or AMG88xx, the IR images can be saved.
 - To generate dynamic BMP images for web servers.
     This module also can write BMP images to BytesIO.
     So it does NOT have to save the images in the file system.
