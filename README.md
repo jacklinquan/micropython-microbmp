@@ -23,6 +23,8 @@ Loading supports compression method:
 Saving only supports compression method 0(BI_RGB, no compression).
 
 The [API][api_link] is compatible with the CPython version [microbmp][microbmp_link].
+As a pure python module, it's not fast. But it opens up the possibility to save images.
+It is especially useful for small IR cameras/sensors.
 
   [api_link]: https://microbmp.readthedocs.io/en/latest/?badge=latest
   [microbmp_link]: https://github.com/jacklinquan/microbmp
@@ -35,9 +37,9 @@ This module can be useful in many scenarios, not limited to the list below:
     If the number of colours used in an image is small, it can be much compact.
 - To print the screen.
     A screen or any `framebuf.FrameBuffer` object can be saved as a BMP image.
-- Save camera or IR thermal camera images.
+- To save camera or IR thermal camera images.
     For projects involve MLX90640 or AMG88xx, the IR images can be saved.
-- Generate dynamic BMP images for web servers.
+- To generate dynamic BMP images for web servers.
     This module also can write BMP images to BytesIO.
     So it does NOT have to save the images in the file system.
     A combination of web server and IR camera can show IR image dynamically in the browser.
