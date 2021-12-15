@@ -1,3 +1,34 @@
+# SSD1351_16bit.py MicroPython driver for Adafruit color OLED displays.
+
+# Adafruit 1.5" 128*128 OLED display: https://www.adafruit.com/product/1431
+# Adafruit 1.27" 128*96 display https://www.adafruit.com/product/1673
+# For wiring details see drivers/ADAFRUIT.md in this repo.
+
+# This driver is based on the Adafruit C++ library for Arduino
+# https://github.com/adafruit/Adafruit-SSD1351-library.git
+
+# The MIT License (MIT)
+
+# Copyright (c) 2019 Peter Hinch
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
 import framebuf
 import utime
 import gc
@@ -8,6 +39,27 @@ import sys
 # The ESP32 does not work reliably in SPI mode 1,1. Waveforms look correct.
 # Keep 0,0 on STM as testing was done in that mode.
 _bs = 0 if sys.platform == 'esp32' else 1  # SPI bus state
+
+# Initialisation commands in cmd_init:
+# 0xfd, 0x12, 0xfd, 0xb1,  # Unlock command mode
+# 0xae,  # display off (sleep mode)
+# 0xb3, 0xf1,  # clock div
+# 0xca, 0x7f,  # mux ratio
+# 0xa0, 0x74,  # setremap 0x74
+# 0x15, 0, 0x7f,  # setcolumn
+# 0x75, 0, 0x7f,  # setrow
+# 0xa1, 0,  # set display start line
+# 0xa2, 0,  # displayoffset
+# 0xb5, 0,  # setgpio
+# 0xab, 1,  # functionselect: serial interface, internal Vdd regulator
+# 0xb1, 0x32,  # Precharge
+# 0xbe, 0x05,  # vcommh
+# 0xa6,  # normaldisplay
+# 0xc1, 0xc8, 0x80, 0xc8,  # contrast abc
+# 0xc7, 0x0f,  # Master contrast
+# 0xb4, 0xa0, 0xb5, 0x55,  # set vsl (see datasheet re ext circuit)
+# 0xb6, 1,  # Precharge 2
+# 0xaf,  # Display on
 
 # SPI baudrate: Pyboard can produce 10.5MHz or 21MHz. Datasheet gives max of 20MHz.
 # Attempt to use 21MHz failed but might work on a PCB or with very short leads.
