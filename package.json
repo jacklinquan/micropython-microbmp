@@ -1,0 +1,6 @@
+{
+  "urls": [
+    ["microbmp.py", "github:jacklinquan/micropython-microbmp/microbmp.py"]
+  ],
+  "version": "0.1.0"
+}

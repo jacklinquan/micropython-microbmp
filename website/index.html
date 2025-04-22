@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MicroPython MicroBMP</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <script src="assets/js/brython_3.13.1.min.js"></script>
+    <script src="assets/js/brython_stdlib_3.13.1.min.js"></script>
+    <link rel="stylesheet" href="assets/css/materialize_1.0.0.min.css">
+    <script src="assets/js/materialize_1.0.0.min.js"></script>
+    <style>
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(8, 40px);
+            grid-template-rows: repeat(8, 40px);
+            gap: 2px;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body id="body" onload="brython()" class="container"><!--
+    The onload="brython()" part is optional since Brython 3.12+
+    https://github.com/brython-dev/brython/releases/tag/3.12.0
+    -->
+
+    <!-- The real project content starts from here -->
+    <!--
+    Your main logic could go into a dedicated .py file,
+    so that the line number in error trace would correctly map into your .py file.
+    Alternatively, your logic could stay in this html file,
+    so that your end user would have one less file to download, thus slightly faster.
+
+    It is important to remember that all text/python scripts are loaded and run
+    in order AFTER all the javascript scripts.
+    You cannot interleave python/javascript scripts and expect them to run in order.
+    -->
+    <script type="text/python" src="main.py"></script>
+    <!-- The real project content ends here -->
+
+    <!-- Boilerplate code starts from here. You shouldn't need to change anything below this line. -->
+
+    <!-- This part is only needed when debugging in raw Android browser.
+    <script src="https://code.hnldesign.nl/hnl.mobileConsole.1.3.js"></script>
+    <script type="text/javascript">if (!mobileConsole.status.initialized) {mobileConsole.init();}</script>
+    -->
+
+    <!-- Load the javascript loader functions.
+        When brython is done initializing everything,
+        it emits a signal "brython_done" that a handler in loader.js
+        captures and removes the loading blocker.
+    -->
+    <script src="assets/js/loader.js"></script>
+    
+    <!--
+    On the first run, the parsing of your python code could take a few seconds.
+    The user will see whatever loader message is on the page when this process begins.
+    The css animations from load.js should continue to run during such a period.
+
+    On subsequent runs, the modules it uses will already have been transpiled.
+    It will go fast and any message you change will flash quickly.
+    -->
+    <script type="text/javascript">update_loader_message("Loading Program Code....")</script>
+    <!-- Boilerplate code ends from here -->
+
+</body>
+</html>
+
