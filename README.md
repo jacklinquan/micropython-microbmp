@@ -47,9 +47,10 @@ This module can be useful in many scenarios, not limited to the list below:
     A combination of web server and IR camera can show IR image dynamically in the browser.
 
 ## Installation
-``` Python
->>> import upip
->>> upip.install('micropython-microbmp')
+The Python file `microbmp.py` can be installed on target hardware with `mpremote`:
+```shell
+pip install mpremote
+mpremote mip install github:jacklinquan/micropython-microbmp
 ```
 Alternatively just copy microbmp.py to the MicroPython device.
 
