@@ -124,6 +124,7 @@ def main():
     document <= grid
     document <= html.P()
     document <= html_button_download
+    document <= html.P()
 
     # Must do window.M.AutoInit() after all html being loaded!
     window.M.AutoInit()
